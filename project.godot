@@ -36,6 +36,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneLoader="*res://scripts/SceneLoader.gd"
+FmodManager="*res://addons/fmod/FmodManager.gd"
 
 [display]
 
@@ -43,7 +44,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 
 [rendering]
 
