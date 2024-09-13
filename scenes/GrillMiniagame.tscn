@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0rjuyll6tbo5"]
+
+[ext_resource type="Script" path="res://scenes/grill_miniagame.gd" id="1_su5pr"]
+[ext_resource type="Texture2D" uid="uid://dcfbm2dypcecv" path="res://images/minigames/grill_scene.png" id="2_dqg2k"]
+[ext_resource type="Texture2D" uid="uid://baejwbhkkf3wp" path="res://images/minigames/sausage.png" id="3_3qdi5"]
+[ext_resource type="Texture2D" uid="uid://drnxxfn7wdj80" path="res://images/minigames/hand.png" id="4_4avy2"]
+[ext_resource type="Script" path="res://scenes/grill/hand.gd" id="5_ve7uh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffu45"]
+radius = 30.0
+height = 284.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0bgc"]
+size = Vector2(504, 462)
+
+[node name="GrillMinigame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_su5pr")
+
+[node name="GrillBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dqg2k")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 586.0
+offset_right = 140.0
+offset_bottom = 625.0
+
+[node name="Sausage" type="Node2D" parent="."]
+
+[node name="SausageTexture" type="TextureRect" parent="Sausage"]
+offset_left = 367.0
+offset_top = 60.0
+offset_right = 879.0
+offset_bottom = 572.0
+texture = ExtResource("3_3qdi5")
+
+[node name="Area2D" type="Area2D" parent="Sausage/SausageTexture"]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sausage/SausageTexture/Area2D"]
+position = Vector2(175, 285)
+shape = SubResource("CapsuleShape2D_ffu45")
+
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(0, 271)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("5_ve7uh")
+
+[node name="HandTexture" type="TextureRect" parent="Hand"]
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+texture = ExtResource("4_4avy2")
+
+[node name="Area2D" type="Area2D" parent="Hand"]
+position = Vector2(-146, -34)
+scale = Vector2(0.5, 0.5)
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D"]
+position = Vector2(220, 263)
+shape = SubResource("RectangleShape2D_l0bgc")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

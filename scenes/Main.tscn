@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbeukmuran2iy"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_gayn5"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gayn5")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 323.0
+offset_top = 175.0
+offset_right = 697.0
+offset_bottom = 406.0
+text = "Start"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
